@@ -26,7 +26,8 @@
                             <td>
                                 <div class="d-flex">
                                     <button class="view btn btn-primary" data-id="{{ $admin->id }}">Details</button>
-                                    <button class="edit-admin btn btn-success" data-id="{{ $admin->id }}">Edit </button>
+                                    <button class="btn btn-success" data-id="{{ $admin->id }}">
+                                        <a href="{{route('admins.edit',[$admin->id])}}">Edit</a></button>
                                     <button class="delete-admin btn btn-danger"
                                         data-id="{{ $admin->id }}">Delete</button>
                                 </div>
@@ -86,21 +87,6 @@
             }
         });
     </script>
-{{-- edit view --}}
-    <script>
-        $(document).on('click', '.edit-admin', function() {
-            var adminId = $(this).data('id');
-            $.ajax({
-                url: "{{ route('admins.edit', ['admin' => '__adminId']) }}".replace('__adminId', adminId),
-                type: 'GET',
-                success: function() {
-                    window.location.href = "{{ route('admins.edit', ['admin' => '__adminId']) }}"
-                        .replace('__adminId', adminId);
-                },
-                error: function() {
-                    alert('Error.');
-                }
-            });
         });
     </script>
 
